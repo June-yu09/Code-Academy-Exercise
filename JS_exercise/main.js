@@ -274,9 +274,13 @@ var x = "prince of persia";
 var newString = "";
 function upper(str){
     var arr = str.split(" ");
-    
-
+    for(let i=0; i < arr.length; i++){
+        newString = newString.concat(arr[i][0].toUpperCase(), arr[i].slice(1,arr[0].length)," ");
+    }
+    console.log(newString);
 }
+
+upper(x);
 
 // Exercise 4
 // Write a JavaScript function that finds the longest word in a phrase. For example, 
@@ -286,10 +290,19 @@ function upper(str){
 
 var x = "Web Development Tutorial";
 function findWord(str){
-    var mew = str.split(" ");
-    var numOfWords = mew.length;
-    
-
-
-
+    var words = str.split(" ");
+    var numOfWords = words.length;
+    var lengthArray = [];
+    for(let i=0; i < numOfWords ; i++){
+        lengthArray.push(words[i].length);
+    }
+    var originalArray = lengthArray.slice();
+    lengthArray.sort(function(a, b) {
+        return a - b;
+      });
+    console.log(originalArray);
+    var myIndex = originalArray.indexOf(lengthArray[numOfWords-1]);
+    console.log(words[myIndex]);
 }
+
+findWord(x);
