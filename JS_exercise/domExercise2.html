@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Exercise No.2</title>
+</head>
+<body>
+    <h1>Multi Table</h1>
+
+    
+    <script>
+        function addMultTable(a,b){
+            const newTable = document.createElement("table");
+            newTable.setAttribute("class", "myTable");
+            document.querySelector('h1').appendChild(newTable);
+
+            for (let i= 0;i<a;i++){
+                const newRow = document.createElement("tr");
+                document.querySelector('.myTable').appendChild(newRow);
+                for(let j=0;j<b;j++){
+                    const newColumn = document.createElement("td");
+                    newColumn.innerHTML = "X";
+                    document.querySelector('.myTable').appendChild(newColumn);
+                }
+            }      
+        }
+
+        addMultTable(9,7);
+
+    </script>
+</body>
+</html>

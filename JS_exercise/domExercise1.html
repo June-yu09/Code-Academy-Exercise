@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom Exercise No.1</title>
+</head>
+<body>
+    <h1>My Favorite Bands</h1>
+
+    <ul id="band-list">
+    </ul>
+
+
+    <script>
+
+        const myBandList = ["AAb", "BBc", "CCd", "DDe", "EEf"];
+
+
+        function addBands(arr){
+
+            arr.forEach(function(e){
+                const bandList = document.createElement('li');
+                bandList.innerHTML = e;
+                document.querySelector("#band-list").appendChild(bandList);
+            })
+        }
+
+        addBands(myBandList);
+
+    </script>
+</body>
+</html>
