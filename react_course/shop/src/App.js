@@ -1,14 +1,17 @@
-import {Navbar, Nav, NavDropdown , Jumbotron, Button} from 'react-bootstrap';
+import {Navbar, Nav , Jumbotron, Button} from 'react-bootstrap';
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import data from './data.js';
-import Products from './components/Products.js';
 import { Route, Link, Switch } from 'react-router-dom';
 import Detail from './components/Detail.js';
+import axios from 'axios';
+import Products from './components/Products';
 
 function App() {
 
   let [myData, setMyData] = useState(data);
+  let [재고, 재고변경] = useState([10,11,12]);
+
 
 
   return (
@@ -25,25 +28,32 @@ function App() {
 
 
         <Switch>
-        <Route exact path='/' >
-          <Jumbotron className="jumboBackground">
-          <h1>Season Off</h1>
-          <p>
-            This is a simple hero unit, a simple jumbotron-style component for calling
-            extra attention to featured content or information.
-          </p>
-          <p>
-            <Button variant="primary">Learn more</Button>
-          </p>
-          </Jumbotron>
-          <div className="container">
-            <Products myData={myData} />
-          </div>
-        </Route>
- 
-        <Route path='/detail' >
-          <Detail />
-        </Route>
+          <Route exact path='/' >
+            <Jumbotron className="jumboBackground">
+            <h1>Season Off</h1>
+            <p>
+              This is a simple hero unit, a simple jumbotron-style component for calling
+              extra attention to featured content or information.
+            </p>
+            <p>
+              <Button variant="primary">Learn more</Button>
+            </p>
+            </Jumbotron>
+            <div className="container">
+                <Products myData={myData} />
+                
+              <button className="btn btn-primary" onClick={()=>{
+                axios.get('https://codingapple1.github.io/shop/data2.json')
+                .then((result)=>{
+                  setMyData([...myData, ...result.data])
+                })
+              }}>더보기</button>
+            </div>
+          </Route>
+  
+          <Route path='/detail/:id' >
+            <Detail shoes={data} 재고={재고} 재고변경={재고변경}/>
+          </Route>
         </Switch>
         
 
