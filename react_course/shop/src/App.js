@@ -62,7 +62,7 @@ function App() {
           
   
           <Route path='/detail/:id' >
-            <Detail shoes={data} 재고={재고} 재고변경={재고변경}/>
+            <Detail shoes={myData} 재고={재고} 재고변경={재고변경}/>
           </Route>
         </Switch>
         

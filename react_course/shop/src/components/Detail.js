@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Nav } from 'react-bootstrap';
 import { CSSTransition } from 'react-transition-group';
 import './Detail.css';
+import { connect } from 'react-redux';
 
 let MyBox = styled.h2`
     font-size: 30px;
@@ -55,7 +56,12 @@ function Detail(props) {
                     <p>{ product.price }</p>
 
                     <Info 재고={props.재고}></Info>
-                    <button className="btn btn-danger" onClick={()=>{props.재고변경([9,11,12])}}>주문하기</button>
+                    <button className="btn btn-danger" onClick={()=>{
+                      props.재고변경([9,11,12])
+                      props.dispatch({type:'수량추가', payload: { id: product.id, name: product.title, quan: 1 }})
+                      history.push('/cart');
+                      
+                      }}>주문하기</button>
                     <button className="btn btn-success" onClick={()=>{
                         history.goBack();
                     }} >뒤로가기</button>
@@ -81,6 +87,15 @@ function Detail(props) {
         
     )
 }
+
+function state를props화(state){
+  return (
+    {
+      state: state.reducer,
+    }
+  )
+}
+
 function TabContent(props){
   useEffect(()=>{
     props.스위치변경(true);
@@ -100,4 +115,4 @@ function Info(props){
   )
 }
 
-export default Detail;
+export default connect(state를props화)(Detail);
